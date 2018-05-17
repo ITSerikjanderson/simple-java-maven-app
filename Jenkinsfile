@@ -29,7 +29,7 @@ pipeline {
 	stage('Post') { 
             steps {
                httpRequest acceptType: 'APPLICATION_JSON', consoleLogResponseBody: true, httpMode: 'POST', requestBody: '''{
-			  "items":       ${ json( jenkins.allItems ) },
+			  "items":       JOB_NAME,
 			  "computers":   ${ json( jenkins.computers.collect{ it.displayName }) },
 			  "moduleRoots": ${ json( build.moduleRoots )},
 			  "artifacts":   ${ json( build.artifacts )},
