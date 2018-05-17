@@ -61,9 +61,8 @@ pipeline {
 
                     
                     $class !by-name Publish HTTP POST notification
-                }
             }
-	    }
+        }
+	}
 	
-    }
 }
