@@ -28,7 +28,7 @@ pipeline {
 	}
 	stage('Post') { 
             steps {
-               httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: patchOrg, url: 'https://requestbincweber.herokuapp.com/1day2kl1'
+			   httpRequest acceptType: 'APPLICATION_JSON', consoleLogResponseBody: true, contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: patchOrg, responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1day2kl1'
             }
         }
     }
