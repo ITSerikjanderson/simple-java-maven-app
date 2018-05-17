@@ -27,9 +27,5 @@ pipeline {
             }
             
 		}
-        stage('Post') { 
-            steps {
-            }
-        } // end post stage
 	} // end stages
 } // end pipleeline
