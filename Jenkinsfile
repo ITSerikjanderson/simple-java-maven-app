@@ -30,9 +30,9 @@ pipeline {
         stage('Post') { 
             steps {
                 publisher{
-                    notifyUrl: https://requestbincweber.herokuapp.com/1day2kl1
+                    notifyUrl: 'https://requestbincweber.herokuapp.com/1day2kl1'
                     notifyTemplate {
-                        "jenkinsVersion": "${jenkins.version}",
+                        jenkinsVersion "${jenkins.version}",
 
                         "jenkinsUrl":     "${jenkins.rootUrl}",
 
