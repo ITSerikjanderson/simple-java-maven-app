@@ -29,9 +29,9 @@ pipeline {
 		}
         stage('Post') { 
             steps {
-                httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: 
-                ${json ("jenkinsVersion :" + build.artifacts.collect{ a -> jenkins.rootUrl + build.url + "artifact/" + a.href } )}
-                , responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1day2kl1'
+                httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'POST', 
+                requestBody: "artifact: " + ${json(build.artifacts.collect{ a -> jenkins.rootUrl + build.url + "artifact/" + a.href } )},
+                 responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1day2kl1'
 
             }
         } // end post stage
