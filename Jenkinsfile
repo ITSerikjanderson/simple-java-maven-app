@@ -29,11 +29,10 @@ pipeline {
 		}
         stage('Post') { 
             steps {
-                publisher $class !by-name Publish HTTP POST notification
+                publisher{
                     notifyUrl "https://requestbincweber.herokuapp.com/1day2kl1"
                     notifyTemplate {
-
-                        jenkinsVersion "${jenkins.version}",
+                        "jenkinsVersion": "${jenkins.version}",
 
                         "jenkinsUrl":     "${jenkins.rootUrl}",
 
@@ -58,11 +57,10 @@ pipeline {
                         "gitCommit": "${env.GIT_COMMIT ?: '' }"
 
                     }
-
+                }
                     
-                    
+                //$class !by-name Publish HTTP POST notification  
             }
-        }
-	}
-	
-}
+        } // end post stage
+	} // end stages
+} // end pipleeline
