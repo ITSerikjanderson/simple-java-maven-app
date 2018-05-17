@@ -29,7 +29,7 @@ pipeline {
 		}
         stage('Post') { 
             steps {
-                httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: '''{
+                httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: {
                 "jenkinsVersion": "${jenkins.version}",
                 "jenkinsUrl":     "${jenkins.rootUrl}",
                 "jobName":        "${build.parent.displayName}",
@@ -42,7 +42,7 @@ pipeline {
                 "gitUrl": "${env.GIT_URL ?: '' }",
                 "gitBranch": "${env.GIT_BRANCH ?: '' }",
                 "gitCommit": "${env.GIT_COMMIT ?: '' }"
-                }''', responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1day2kl1'
+                }, responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1day2kl1'
 
             }
         } // end post stage
