@@ -25,6 +25,10 @@ pipeline {
             steps {
                 sh './jenkins/scripts/deliver.sh' 
             }
+	stage('Post') { 
+            steps {
+                httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1day2kl1'
+            }
         }
     }
 }
