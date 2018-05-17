@@ -30,25 +30,18 @@ pipeline {
         stage('Post') { 
             steps {
                 httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'POST', requestBody: '''{
-                "glossary": {
-                    "title": "example glossary",
-                    "GlossDiv": {
-                        "title": "S",
-                        "GlossList": {
-                            "GlossEntry": {
-                                "ID": "SGML",
-                                "SortAs": "SGML",
-                                "GlossTerm": "Standard Generalized Markup Language",
-                                "Acronym": "SGML",
-                                "Abbrev": "ISO 8879:1986",
-                                "GlossDef": {
-                                    "para": "A meta-markup language, used to create markup languages such as DocBook.",
-                                    "GlossSeeAlso": ["GML", "XML"]
-                                },
-                                "GlossSee": "markup"
-                            }
-                        }
-                    }
+                "jenkinsVersion": "${jenkins.version}",
+                "jenkinsUrl":     "${jenkins.rootUrl}",
+                "jobName":        "${build.parent.displayName}",
+                "buildNumber":     ${build.number},
+                "jobUrl": "${ ( jenkins.rootUrl + build.url ) - ( build.number + '/' )}",
+                "buildUrl": "${ jenkins.rootUrl + build.url }",
+                "buildLog": "${ jenkins.rootUrl + build.url }consoleText",
+                "buildResult": "${build.result}",
+                "artifacts": ${ json( build.artifacts.collect{ a -> jenkins.rootUrl + build.url + "artifact/" + a.href } )},
+                "gitUrl": "${env.GIT_URL ?: '' }",
+                "gitBranch": "${env.GIT_BRANCH ?: '' }",
+                "gitCommit": "${env.GIT_COMMIT ?: '' }"
                 }''', responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1day2kl1'
 
             }
