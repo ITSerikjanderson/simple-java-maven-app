@@ -33,9 +33,7 @@ pipeline {
                 requestBody:  "{Job_Name: $JOB_NAME" +
                               //" jenkinsVersion: $jenkins.version"+
                               " buildResult: ${currentBuild.id}"+
-                              "displayName: $currentBuild.currentResult"
-                              +"}"
-                              ,
+                              "displayName: $currentBuild.currentResult}",
                 responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1ndjk8i1'
 
             }
