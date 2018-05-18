@@ -28,19 +28,22 @@ pipeline {
             
 		}
         stage('Post') { 
-            steps {
-                pom = readMavenPom file: 'pom.xml'
-                echo pom
+            script{
+                steps {
+                    pom = readMavenPom file: 'pom.xml'
+                    echo pom
 
 
-                httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'POST', 
-                requestBody:  "{Job_Name: $JOB_NAME" +
-                              //" jenkinsVersion: $jenkins.version"+
-                              " buildResult: ${currentBuild.id}"+
-                              " displayName: $currentBuild.currentResult}",
-                responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1ndjk8i1'
+                    httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'POST', 
+                    requestBody:  "{Job_Name: $JOB_NAME" +
+                                //" jenkinsVersion: $jenkins.version"+
+                                " buildResult: ${currentBuild.id}"+
+                                " displayName: $currentBuild.currentResult}",
+                    responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1ndjk8i1'
 
+                }
             }
+            
         } // end post stage
 	} // end stages
 } // end pipleeline
