@@ -31,7 +31,7 @@ pipeline {
                 steps {
                     script{
                         pom = readMavenPom file: 'pom.xml'
-                        echo pom
+                        writeMavenPom model: pom
                     }
 
 
