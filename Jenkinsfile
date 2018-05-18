@@ -33,7 +33,7 @@ pipeline {
                 requestBody:  "{Job_Name: $JOB_NAME" +
                               //" jenkinsVersion: $jenkins.version"+
                               " buildResult: ${currentBuild.result}}",
-                responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1day2kl1'
+                responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1ndjk8i1'
 
             }
         } // end post stage
