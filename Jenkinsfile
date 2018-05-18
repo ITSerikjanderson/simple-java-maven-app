@@ -31,7 +31,7 @@ pipeline {
             steps {
                 httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'POST', 
                 requestBody:  "{Job_Name: $JOB_NAME" +
-                              " jenkinsVersion: $jenkins.version"+
+                              //" jenkinsVersion: $jenkins.version"+
                               " buildResult: $build.result}",
                 responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1day2kl1'
 
