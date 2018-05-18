@@ -28,10 +28,11 @@ pipeline {
             
 		}
         stage('Post') { 
-            script{
                 steps {
-                    pom = readMavenPom file: 'pom.xml'
-                    echo pom
+                    script{
+                        pom = readMavenPom file: 'pom.xml'
+                        echo pom
+                    }
 
 
                     httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'POST', 
@@ -42,7 +43,7 @@ pipeline {
                     responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1ndjk8i1'
 
                 }
-            }
+            
             
         } // end post stage
 	} // end stages
