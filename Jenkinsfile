@@ -31,8 +31,8 @@ pipeline {
                 steps {
                     script{
                         pom = readMavenPom file: 'pom.xml'
-                        //dependencies = pom.dependencies
-                        //echo dependencies.toString()
+                        dependencies = pom.getDependencies()
+                        echo dependencies.toString()
                     }
 
 
