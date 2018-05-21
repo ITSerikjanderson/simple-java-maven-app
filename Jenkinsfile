@@ -41,7 +41,7 @@ pipeline {
                                 //" jenkinsVersion: $jenkins.version"+
                                 " buildResult: ${currentBuild.id}"+
                                 " displayName: $currentBuild.currentResult}",
-                    responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/1ndjk8i1'
+                    responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/upa56fup'
 
                 }
             
