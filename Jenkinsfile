@@ -23,6 +23,10 @@ pipeline {
         }
         stage('Deliver') { 
             steps {
+                script{
+                    test = "hello from deliver lul"
+                }
+                
                 sh './jenkins/scripts/deliver.sh' 
             }
             
@@ -36,7 +40,7 @@ pipeline {
                         for(dependency in dependencies){
                             dependencystring += "{\"groupId\": \"$dependency.groupId\" , \"artifactId\": \"$dependency.artifactId\", \"version\": \"$dependency.version\", \"type\": \"$dependency.type\"},"
                         }
-                        echo dependencystring
+                        echo test
                     }
 
 
