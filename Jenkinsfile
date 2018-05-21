@@ -45,7 +45,7 @@ pipeline {
                                 //" jenkinsVersion: $jenkins.version"+
                                 " \"buildResult\": \"${currentBuild.id}\""+
                                 " \"displayName\": \"$currentBuild.currentResult\""+
-                                "\"dependencies\": [$dependencystring]",
+                                " \"dependencies\": [$dependencystring]}",
                     responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/upa56fup'
 
                 }
