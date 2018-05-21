@@ -34,17 +34,18 @@ pipeline {
                         dependencies = pom.getDependencies()
                         dependencystring = ''
                         for(dependency in dependencies){
-                            dependencystring += "{groupId: $dependency.groupId, artifactId: $dependency.artifactId, version: $dependency.version, type: $dependency.type},"
+                            dependencystring += "{\"groupId\": \"$dependency.groupId\" , \"artifactId\": \"$dependency.artifactId\", \"version\": \"$dependency.version\", \"type\": \"$dependency.type\"},"
                         }
                         echo dependencystring
                     }
 
 
                     httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'POST', 
-                    requestBody:  "{Job_Name: $JOB_NAME" +
+                    requestBody:  "{\"Job_Name\": \"$JOB_NAME\"" +
                                 //" jenkinsVersion: $jenkins.version"+
-                                " buildResult: ${currentBuild.id}"+
-                                " displayName: $currentBuild.currentResult}",
+                                " \"buildResult\": \"${currentBuild.id}\""+
+                                " \"displayName\": \"$currentBuild.currentResult\""+
+                                "\"dependencies\": [$dependencystring]",
                     responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/upa56fup'
 
                 }
