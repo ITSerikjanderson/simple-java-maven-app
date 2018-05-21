@@ -32,7 +32,10 @@ pipeline {
                     script{
                         pom = readMavenPom file: 'pom.xml'
                         dependencies = pom.getDependencies()
-                        echo dependencies.toString()
+                        for(dependency in dependencies){
+                            echo dependency.toString()
+                        }
+                        
                     }
 
 
