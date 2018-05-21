@@ -32,10 +32,11 @@ pipeline {
                     script{
                         pom = readMavenPom file: 'pom.xml'
                         dependencies = pom.getDependencies()
+                        dependencystring = ''
                         for(dependency in dependencies){
-                            echo dependency.toString()
+                            dependencystring += "{groupId: $dependency.groupId, artifactId: $dependency.artifactId, version: $dependency.version, type: $dependency.type},"
                         }
-                        
+                        echo dependencystring
                     }
 
 
