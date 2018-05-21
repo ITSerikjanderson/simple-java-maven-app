@@ -41,10 +41,9 @@ pipeline {
 
 
                     httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'POST', 
-                    requestBody:  "{\"Job_Name\": \"$JOB_NAME\"" +
-                                //" jenkinsVersion: $jenkins.version"+
-                                " \"buildResult\": \"${currentBuild.id}\""+
-                                " \"displayName\": \"$currentBuild.currentResult\""+
+                    requestBody:  "{\"Job_Name\": \"$JOB_NAME\"," +
+                                " \"buildId\": \"${currentBuild.id}\","+
+                                " \"buildResult\": \"$currentBuild.currentResult\","+
                                 " \"dependencies\": [$dependencystring]}",
                     responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/upa56fup'
 
