@@ -33,22 +33,24 @@ pipeline {
                     script{
                         pom = readMavenPom file: 'pom.xml'
                         dependencies = pom.getDependencies()
-                        versions = pom.getVersion()
-                        versions2 = pom.getModelVersion()
-                        supaartifactId = pom.getArtifactId()
-
-                        echo "$versions AND $versions2 AND $supaartifactId"
+                        plugins = pom.getPluginRepositories()
+                        version = pom.getVersion()
+                        artifactId = pom.getArtifactId()
                         dependencystring = ''
+                        pluginstring = ''
                         for(dependency in dependencies){
                             dependencystring += "{\"groupId\": \"$dependency.groupId\" , \"artifactId\": \"$dependency.artifactId\", \"version\": \"$dependency.version\", \"type\": \"$dependency.type\"},"
+                        }
+                        for(plugin in plugins){
+                            id = plugin.getId()
+                            echo "$id"
                         }
                     }
 
 
                     httpRequest acceptType: 'APPLICATION_JSON', contentType: 'APPLICATION_JSON', httpMode: 'POST', 
-                    requestBody:  "{\"Job_Name\": \"$JOB_NAME\"," +
-                                " \"buildId\": \"${currentBuild.id}\","+
-                                " \"buildResult\": \"$currentBuild.currentResult\","+
+                    requestBody:  "{\"id\": \"$artifactId\"," +
+                                " \"version\": \"$version\","+
                                 " \"dependencies\": [$dependencystring]}",
                     responseHandle: 'NONE', url: 'https://requestbincweber.herokuapp.com/upa56fup'
 
