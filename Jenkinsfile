@@ -39,7 +39,7 @@ pipeline {
                         dependencystring = ''
                         pluginstring = ''
                         for(dependency in dependencies){
-                            dependencystring += "{\"groupId\": \"$dependency.groupId\" , \"artifactId\": \"$dependency.artifactId\", \"version\": \"$dependency.version\", \"type\": \"$dependency.type\"},"
+                            dependencystring += "{\"artifactId\": \"$dependency.artifactId\", \"version\": \"$dependency.version\", \"type\": \"$dependency.type\"},"
                         }
                         for(plugin in plugins){
                             id = plugin.getId()
