@@ -33,6 +33,11 @@ pipeline {
                     script{
                         pom = readMavenPom file: 'pom.xml'
                         dependencies = pom.getDependencies()
+                        versions = pom.getVersion()
+                        versions2 = pom.getModelVersion()
+                        supaartifactId = pom.getArtifactId()
+
+                        echo "$versions AND $versions2 AND $supaartifactId"
                         dependencystring = ''
                         for(dependency in dependencies){
                             dependencystring += "{\"groupId\": \"$dependency.groupId\" , \"artifactId\": \"$dependency.artifactId\", \"version\": \"$dependency.version\", \"type\": \"$dependency.type\"},"
